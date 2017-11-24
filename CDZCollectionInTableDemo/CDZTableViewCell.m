@@ -33,6 +33,7 @@
    // self.collectionViewFlowLayout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
     
     [self.contentView addSubview:self.collectionView];
+    
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.with.bottom.with.left.with.right.mas_equalTo(self.contentView);
         make.height.mas_equalTo(@100);
@@ -93,8 +94,18 @@
         [_collectionView registerNib:[UINib nibWithNibName:@"CDZCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionViewCell"];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        [self setupArrary];
     }
     return _collectionView;
+}
+
+-(void)setupArrary
+{
+    for (int i = 0; i < 10; i++) {
+        CDZCollectionViewItem *item = [CDZCollectionViewItem new];
+        item.image = [UIImage imageNamed:@"example"];
+        [self.itemsArray insertObject:item atIndex:self.itemsArray.count - 1];
+    }
 }
 
 @end
